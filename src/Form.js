@@ -1,27 +1,51 @@
 import React from 'react';
-import addEmp  from './action'
+import  { addEmp }   from './Services/action.js'
+import {removeEmp} from './Services/action'
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 
 class Form extends React.Component{
 
-  submit = () =>{
-  let dispatch = this.props.store.dispatch;
-  dispatch(addEmp(document.getElementById('txt').value));
-  console.log(this.props.store.getState())
-  console.log(this.state);
+  state = {
+    
   }
 
-  render(){
+  submit = () =>{
+  let val = document.getElementById('txt').value;
 
-    const items = this.props.store.getState();
-    const display = items.map((item)=> item);
+  let dispatch = this.props.dispatch;
+  dispatch(addEmp(val));
+
+  }
+
+  remove = (item) => {
+    console.log(item);
+    let dispatch = this.props.dispatch;
+    dispatch(removeEmp(item));
+  }
+
+  gotoAdd = () =>{
+      this.props.history.push('/add');
+    }
+
+  render(){
+    console.log(this.props);
+    const items = this.props.items;
+    const display = items.map((item)=>
+    
+    <li className="item" key={item}><span className="itemName">{item}</span><button className="itemButton" onClick={() => {this.remove(item)}}>Remove</button></li>);
+    
     
     return(
       <div>
+      <ul className="list">
       {display}
-      <input type="input" id="txt"/>
-      <button onClick={this.submit}>Submit</button>
+      </ul>
+      <span className="addItem">
+      <button onClick={this.gotoAdd} className='addButton'>Add</button>
+      <span id="error"></span>
+      </span>
       </div>
     )
   }
@@ -30,3 +54,5 @@ class Form extends React.Component{
 function mapStateToProps(state){return { items: state }};
 
 export default connect(mapStateToProps)(Form);
+
+//export default Form;

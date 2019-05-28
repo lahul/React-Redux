@@ -8,7 +8,8 @@
     "react-scripts": "2.1.5",
     "redux":"*",
     "react-router-dom": "*",
-    "react-redux" : "*"
+    "react-redux" : "5.0",
+    "redux-thunk" :"*"
   },
   "scripts": {
     "start": "react-scripts start",

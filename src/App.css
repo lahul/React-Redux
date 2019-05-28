@@ -31,3 +31,39 @@
     transform: rotate(360deg);
   }
 }
+
+.list{
+  list-style : none;
+  display : flex;
+  flex-direction : column;
+  
+
+}
+
+.item{
+  
+  display : flex;
+  flex-grow : 1;
+  flex-direction :row;
+  justify-content : space-around;
+}
+
+itemName{
+  
+}
+
+.itemButton{
+  
+}
+
+.addItem{
+  display: flex;
+  justify-content : center;
+}
+
+.addButton{
+  display : inline-block;
+  padding : 15px;
+  background-color : aqua;
+  text-decoration : none;
+}
