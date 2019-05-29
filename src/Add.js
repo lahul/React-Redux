@@ -41,7 +41,8 @@ nameChanged = (e) =>{
     })
   }    
 
-  addItem = () =>{
+  addItem = (event) =>{
+      event.preventDefault();
       this.props.addItem(this.state.fields.name);
       this.props.history.push('/')
   }
@@ -53,11 +54,23 @@ nameChanged = (e) =>{
 
 
     return(
-    <div>
-      Name : <input type="text" value={this.state.fields.name} onChange={(e)=>{this.nameChanged(e)}}/>
-      Type : <input type="text" value={this.state.fields.type} onChange={(e) => {this.typeChanged(e)}}/>
-      Quantity : <input type="text" value={this.state.fields.size} onChange={(e) =>{this.quantityChanged(e)}}/>
-      <button onClick={() =>{this.addItem()}}>Add Item</button>
+      <div>
+      <form>
+    <div className="form-group">
+      <label for="forInputName">Name</label> 
+      <input type="text" className="form-control" value={this.state.fields.name} onChange={(e)=>{this.nameChanged(e)}}/>
+      </div>
+      <div className="form-group">
+      <label for="forInputType">Type</label> 
+      <input type="text" className="form-control" value={this.state.fields.type} onChange={(e) => {this.typeChanged(e)}}/>
+      </div>
+      <div className="form-group">
+      <label for="forInputQuantity">Quantity</label>
+      <input type="text" className="form-control" value={this.state.fields.size} onChange={(e) =>{this.quantityChanged(e)}}/>
+      </div>
+      <button type="submit" class="btn btn-primary" onClick={(e)=>{this.addItem(e)}}>Submit</button>
+      
+      </form>
       </div>
     )
   }
